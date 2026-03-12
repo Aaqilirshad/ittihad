@@ -1,0 +1,760 @@
+/* ============================================
+   AL-ITTIHAD — Iftar Party Webpage Styles
+   ============================================ */
+
+:root {
+  --gold-dark: #8a6820;
+  --gold-mid: #c9a84c;
+  --gold-light: #f0d080;
+  --gold-pale: #faf0d0;
+  --cream-bg: #fdf8ef;
+  --cream-card: #faf4e5;
+  --cream-deep: #f5e8c8;
+  --text-dark: #3a2a10;
+  --text-mid: #7a5a20;
+  --text-light: #a07830;
+  --white: #ffffff;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--cream-bg);
+  min-height: 100vh;
+  font-family: 'EB Garamond', 'Cormorant Garamond', Georgia, serif;
+  color: var(--text-dark);
+  overflow-x: hidden;
+  position: relative;
+}
+
+/* ---- Particle Canvas ---- */
+#particleCanvas {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 0;
+  opacity: 0.6;
+}
+
+/* ---- Floating Orbs ---- */
+.orbs-container {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 1;
+  overflow: hidden;
+}
+
+.orb {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(60px);
+  animation: orbFloat 12s ease-in-out infinite alternate;
+}
+
+.orb-1 {
+  width: 400px;
+  height: 400px;
+  background: radial-gradient(circle, rgba(201, 168, 76, 0.18), transparent 70%);
+  top: -100px;
+  left: -100px;
+  animation-duration: 14s;
+}
+
+.orb-2 {
+  width: 300px;
+  height: 300px;
+  background: radial-gradient(circle, rgba(240, 208, 128, 0.15), transparent 70%);
+  bottom: 100px;
+  right: -50px;
+  animation-duration: 10s;
+  animation-delay: -4s;
+}
+
+.orb-3 {
+  width: 250px;
+  height: 250px;
+  background: radial-gradient(circle, rgba(255, 220, 100, 0.12), transparent 70%);
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  animation-duration: 18s;
+  animation-delay: -7s;
+}
+
+@keyframes orbFloat {
+  0% {
+    transform: translate(0, 0) scale(1);
+  }
+
+  50% {
+    transform: translate(30px, -40px) scale(1.1);
+  }
+
+  100% {
+    transform: translate(-20px, 20px) scale(0.95);
+  }
+}
+
+/* ---- Page Wrapper ---- */
+.page-wrapper {
+  position: relative;
+  z-index: 2;
+  max-width: 640px;
+  margin: 0 auto;
+  padding: 0 24px 60px;
+  text-align: center;
+}
+
+/* ============================================
+   HERO SECTION
+   ============================================ */
+.hero {
+  position: relative;
+  padding-top: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* ---- Top Mandala ---- */
+.mandala-top {
+  position: fixed;
+  left: -80px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 320px;
+  height: 320px;
+  z-index: 0;
+  pointer-events: none;
+  overflow: visible;
+  opacity: 0.55;
+}
+
+.mandala-svg {
+  width: 100%;
+  height: auto;
+  transform-origin: center top;
+  animation: mandalaSpin 60s linear infinite;
+  filter: drop-shadow(0 4px 24px rgba(201, 168, 76, 0.25));
+}
+
+@keyframes mandalaSpin {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* ---- Arabic Title ---- */
+.arabic-title {
+  font-family: 'Noto Naskh Arabic', 'EB Garamond', serif;
+  font-size: clamp(2.4rem, 8vw, 3.8rem);
+  font-weight: 700;
+  background: linear-gradient(135deg, var(--gold-dark), var(--gold-light), var(--gold-dark));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  letter-spacing: 0.02em;
+  margin-bottom: 4px;
+  filter: drop-shadow(0 2px 8px rgba(138, 104, 32, 0.3));
+  direction: rtl;
+}
+
+/* ---- Hero Divider ---- */
+.hero-divider {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  width: 220px;
+  margin: 8px auto;
+}
+
+.divider-line {
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--gold-mid), transparent);
+}
+
+.divider-diamond {
+  color: var(--gold-mid);
+  font-size: 0.55rem;
+  line-height: 1;
+}
+
+/* ---- Main Title ---- */
+.main-title {
+  font-family: 'Cinzel', serif;
+  font-size: clamp(2rem, 7vw, 3.5rem);
+  font-weight: 600;
+  letter-spacing: 0.25em;
+  background: linear-gradient(135deg, var(--gold-dark) 0%, var(--gold-light) 50%, var(--gold-dark) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  text-shadow: none;
+  margin-bottom: 8px;
+  position: relative;
+}
+
+.main-title::after {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 60%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--gold-mid), transparent);
+}
+
+/* ---- Subtitle ---- */
+.subtitle {
+  font-family: 'Cinzel', serif;
+  font-size: clamp(0.7rem, 2.5vw, 0.85rem);
+  letter-spacing: 0.35em;
+  color: var(--text-mid);
+  margin-bottom: 32px;
+  text-transform: uppercase;
+}
+
+/* ---- Lantern ---- */
+.lantern-wrapper {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 0 auto 12px;
+}
+
+.lantern-chain {
+  width: 2px;
+  height: 50px;
+  background: linear-gradient(to bottom, var(--gold-mid), var(--gold-dark));
+  margin: 0 auto;
+  position: relative;
+}
+
+.lantern-chain::before,
+.lantern-chain::after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 6px;
+  height: 6px;
+  background: var(--gold-mid);
+  border-radius: 50%;
+}
+
+.lantern-chain::before {
+  top: 10px;
+}
+
+.lantern-chain::after {
+  top: 30px;
+}
+
+.lantern-svg {
+  width: 120px;
+  height: auto;
+  animation: lanternSwing 5s ease-in-out infinite;
+  transform-origin: top center;
+  filter: drop-shadow(0 8px 32px rgba(255, 180, 30, 0.45)) drop-shadow(0 0 12px rgba(201, 168, 76, 0.3));
+}
+
+@keyframes lanternSwing {
+
+  0%,
+  100% {
+    transform: rotate(-6deg);
+  }
+
+  50% {
+    transform: rotate(6deg);
+  }
+}
+
+.lantern-glow {
+  width: 100px;
+  height: 20px;
+  background: radial-gradient(ellipse, rgba(255, 200, 50, 0.5), transparent 70%);
+  border-radius: 50%;
+  margin-top: -10px;
+  animation: glowPulse 3s ease-in-out infinite;
+}
+
+@keyframes glowPulse {
+
+  0%,
+  100% {
+    opacity: 0.5;
+    transform: scale(1);
+  }
+
+  50% {
+    opacity: 0.9;
+    transform: scale(1.2);
+  }
+}
+
+/* ============================================
+   DESCRIPTION
+   ============================================ */
+.description-section {
+  margin: 28px 0 20px;
+  padding: 24px 32px;
+  background: rgba(255, 248, 230, 0.7);
+  border: 1px solid rgba(201, 168, 76, 0.25);
+  border-radius: 4px;
+  position: relative;
+  backdrop-filter: blur(8px);
+}
+
+.description-section::before,
+.description-section::after {
+  content: '✦';
+  position: absolute;
+  color: var(--gold-mid);
+  font-size: 0.7rem;
+  opacity: 0.6;
+}
+
+.description-section::before {
+  top: 6px;
+  left: 12px;
+}
+
+.description-section::after {
+  bottom: 6px;
+  right: 12px;
+}
+
+.description-text {
+  font-family: 'Cormorant Garamond', 'EB Garamond', serif;
+  font-size: clamp(1rem, 3vw, 1.2rem);
+  line-height: 1.8;
+  color: var(--text-dark);
+  font-weight: 400;
+}
+
+.description-text strong {
+  color: var(--gold-dark);
+  font-weight: 600;
+}
+
+/* ============================================
+   SECTION DIVIDERS
+   ============================================ */
+.section-divider {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin: 16px 0;
+}
+
+.divider-line.long {
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--gold-mid), transparent);
+}
+
+.divider-ornament {
+  color: var(--gold-mid);
+  font-size: 0.65rem;
+  flex-shrink: 0;
+}
+
+/* ============================================
+   DATE SECTION
+   ============================================ */
+.date-section {
+  margin: 12px 0;
+  padding: 8px 0;
+}
+
+.date-month {
+  font-family: 'Cinzel', serif;
+  font-size: clamp(0.9rem, 3vw, 1.05rem);
+  letter-spacing: 0.5em;
+  color: var(--text-mid);
+  margin-bottom: 16px;
+}
+
+.date-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0;
+}
+
+.date-col {
+  padding: 0 28px;
+}
+
+.date-label {
+  font-family: 'Cinzel', serif;
+  font-size: clamp(0.7rem, 2.5vw, 0.85rem);
+  letter-spacing: 0.2em;
+  color: var(--text-mid);
+  line-height: 1.4;
+  text-align: center;
+}
+
+.date-separator-bar {
+  width: 1px;
+  height: 48px;
+  background: linear-gradient(to bottom, transparent, var(--gold-mid), transparent);
+}
+
+.date-day {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(3.5rem, 12vw, 5.5rem);
+  font-weight: 300;
+  background: linear-gradient(135deg, var(--gold-dark), var(--gold-light), var(--gold-dark));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  line-height: 1;
+  padding: 0 20px;
+}
+
+.date-year {
+  font-family: 'Cinzel', serif;
+  font-size: clamp(0.9rem, 3vw, 1.05rem);
+  letter-spacing: 0.5em;
+  color: var(--text-mid);
+  margin-top: 16px;
+}
+
+/* ============================================
+   VENUE
+   ============================================ */
+.venue-section {
+  margin: 12px 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+}
+
+.venue-icon {
+  margin-bottom: 4px;
+  animation: venuePulse 3s ease-in-out infinite;
+}
+
+@keyframes venuePulse {
+
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-3px);
+  }
+}
+
+.venue-name {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(1.1rem, 3.5vw, 1.35rem);
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  color: var(--text-mid);
+}
+
+.venue-city {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(0.95rem, 3vw, 1.1rem);
+  font-style: italic;
+  color: var(--text-light);
+  letter-spacing: 0.05em;
+}
+
+/* ============================================
+   COUNTDOWN TIMER
+   ============================================ */
+.countdown-section {
+  margin: 0 0 28px;
+  padding: 28px 24px;
+  background: linear-gradient(135deg,
+      rgba(201, 168, 76, 0.08) 0%,
+      rgba(250, 240, 208, 0.6) 50%,
+      rgba(201, 168, 76, 0.08) 100%);
+  border: 1px solid rgba(201, 168, 76, 0.35);
+  border-radius: 8px;
+  position: relative;
+  overflow: hidden;
+  backdrop-filter: blur(8px);
+}
+
+.countdown-section::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg,
+      rgba(201, 168, 76, 0.05) 0%,
+      transparent 60%,
+      rgba(201, 168, 76, 0.05) 100%);
+  pointer-events: none;
+}
+
+/* Corner ornaments */
+.countdown-section::after {
+  content: '';
+  position: absolute;
+  top: 8px;
+  left: 8px;
+  right: 8px;
+  bottom: 8px;
+  border: 1px solid rgba(201, 168, 76, 0.15);
+  border-radius: 6px;
+  pointer-events: none;
+}
+
+.countdown-label {
+  font-family: 'Cinzel', serif;
+  font-size: clamp(0.6rem, 2vw, 0.75rem);
+  letter-spacing: 0.35em;
+  color: var(--text-light);
+  margin-bottom: 20px;
+  text-transform: uppercase;
+}
+
+.countdown-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.countdown-unit {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  min-width: 70px;
+}
+
+.countdown-value {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(2.5rem, 9vw, 4rem);
+  font-weight: 300;
+  line-height: 1;
+  background: linear-gradient(135deg, var(--gold-dark) 0%, var(--gold-light) 50%, var(--gold-dark) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  filter: drop-shadow(0 2px 6px rgba(138, 104, 32, 0.2));
+  transition: transform 0.15s ease;
+  position: relative;
+  display: block;
+}
+
+.countdown-value.flip {
+  animation: numFlip 0.3s ease;
+}
+
+@keyframes numFlip {
+  0% {
+    transform: translateY(-6px);
+    opacity: 0.7;
+  }
+
+  50% {
+    transform: translateY(3px);
+  }
+
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.countdown-unit-label {
+  font-family: 'Cinzel', serif;
+  font-size: 0.6rem;
+  letter-spacing: 0.3em;
+  color: var(--text-light);
+  text-transform: uppercase;
+}
+
+.countdown-colon {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(2rem, 7vw, 3rem);
+  color: var(--gold-mid);
+  font-weight: 300;
+  line-height: 1;
+  margin-bottom: 20px;
+  animation: colonBlink 1s step-end infinite;
+}
+
+@keyframes colonBlink {
+
+  0%,
+  100% {
+    opacity: 1;
+  }
+
+  50% {
+    opacity: 0.3;
+  }
+}
+
+.countdown-event-started {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(1.1rem, 3.5vw, 1.3rem);
+  font-style: italic;
+  color: var(--gold-dark);
+  margin-top: 16px;
+  animation: fadeInUp 0.8s ease forwards;
+}
+
+/* ============================================
+   QUOTE SECTION
+   ============================================ */
+.quote-section {
+  margin: 14px 0 20px;
+  padding: 20px 24px;
+}
+
+.quote-text {
+  font-family: 'Cormorant Garamond', 'EB Garamond', serif;
+  font-style: italic;
+  font-size: clamp(1rem, 3.2vw, 1.25rem);
+  line-height: 1.7;
+  color: var(--text-dark);
+  quotes: '\201C' '\201D';
+}
+
+.quote-text::before {
+  content: open-quote;
+  color: var(--gold-mid);
+  font-size: 1.8em;
+  line-height: 0;
+  vertical-align: -0.5em;
+  margin-right: 2px;
+}
+
+.quote-text::after {
+  content: close-quote;
+  color: var(--gold-mid);
+  font-size: 1.8em;
+  line-height: 0;
+  vertical-align: -0.5em;
+  margin-left: 2px;
+}
+
+.quote-source {
+  display: block;
+  font-family: 'Cinzel', serif;
+  font-size: clamp(0.7rem, 2.2vw, 0.82rem);
+  letter-spacing: 0.12em;
+  color: var(--text-light);
+  margin-top: 10px;
+  font-style: normal;
+}
+
+/* ============================================
+   BOTTOM GEOMETRIC STRIP
+   ============================================ */
+.bottom-geometric {
+  width: 100%;
+  opacity: 0.5;
+  margin-top: 10px;
+}
+
+.bottom-geometric svg {
+  width: 100%;
+  height: auto;
+}
+
+/* ============================================
+   ANIMATIONS
+   ============================================ */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-up {
+  opacity: 0;
+  animation: fadeInUp 0.9s cubic-bezier(0.22, 0.61, 0.36, 1) forwards;
+}
+
+/* ============================================
+   RESPONSIVE
+   ============================================ */
+@media (max-width: 480px) {
+  .page-wrapper {
+    padding: 0 16px 48px;
+  }
+
+  .mandala-top {
+    width: 280px;
+    height: 165px;
+    margin-bottom: -50px;
+  }
+
+  .description-section {
+    padding: 18px 20px;
+  }
+
+  .countdown-unit {
+    min-width: 56px;
+  }
+
+  .date-col {
+    padding: 0 14px;
+  }
+}
+
+@media (min-width: 768px) {
+  .page-wrapper {
+    padding-bottom: 80px;
+  }
+
+  .mandala-top {
+    width: 400px;
+    height: 240px;
+  }
+}
+
+/* ============================================
+   SCROLLBAR
+   ============================================ */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--cream-bg);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--gold-mid);
+  border-radius: 3px;
+}
