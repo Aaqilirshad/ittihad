@@ -5,7 +5,7 @@
 /* ---- Countdown Timer ---- */
 (function initCountdown() {
     // Target: March 15, 2026, 17:00:00 local time
-    const TARGET = new Date('2026-03-15T17:00:00').getTime();
+    const TARGET = new Date('2026-03-14T17:00:00').getTime();
 
     const daysEl = document.getElementById('days');
     const hoursEl = document.getElementById('hours');
